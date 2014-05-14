@@ -1,0 +1,12 @@
+<persistence-unit name="exemplo-1">
+	<provider>org.batoo.jpa.core.BatooPersistenceProvider</provider>
+	
+	<properties>
+		<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>
+        <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:."/>
+        <property name="javax.persistence.jdbc.user" value="sa"/>
+        <property name="javax.persistence.jdbc.password" value=""/>
+         			
+		<property name="org.batoo.jpa.ddl" value="DROP" />
+	</properties>
+</persistence-unit>
