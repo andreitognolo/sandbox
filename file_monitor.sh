@@ -21,5 +21,5 @@ do
     	
        LTIME=$ATIME
    fi
-   sleep 5
+   sleep 1
 done
