@@ -15,4 +15,8 @@ public class EntityManagerUtil {
 		
 		return emf.createEntityManager();
 	}
+
+	public static void closeEMF() {
+		emf.close();
+	}
 }
