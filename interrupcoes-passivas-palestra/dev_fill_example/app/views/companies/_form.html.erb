@@ -1,0 +1,52 @@
+<%= form_for @company do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, size: 30, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :cnpj %>
+      <%= f.text_field :cnpj, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :state %>
+      <select name="company[state]" id="company_state" class="form-control" data-bind="value: state">
+        <%= options_for_select all_states, @company.state %>
+      </select>
+    </div>
+
+    <div class="form-group company_city_wrapper">
+      <%= f.label :city %>
+      <input type="text" data-bind="value: city" />
+      <select name="company[city]" id="company_city" class="form-control" data-bind="value: city,
+                                                                                     options: cities,
+                                                                                     optionsValue: 'id',
+                                                                                     optionsText: 'name'" />
+    </div>
+
+    <%= f.submit "Salvar", class: "btn btn-default" %>
+<% end %>
+
+<script type="text/javascript">
+    function companyViewModel() {
+        var self = this;
+
+        self.state = ko.observable();
+        self.state("<%= @company.state %>");
+        self.cities = ko.observable();
+        ko.computed(function() {
+            if (!self.state) {
+                return [];
+            }
+
+            $.getJSON('/companies/cities.json', {state: self.state() }, function(citiesJson) {
+                self.cities(citiesJson);
+                self.city = ko.observable();
+                self.city(<%= @company.city %>);
+            });
+        });
+    }
+
+    ko.applyBindings(companyViewModel);
+</script>

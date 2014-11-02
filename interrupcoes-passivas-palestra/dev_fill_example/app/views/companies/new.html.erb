@@ -1,0 +1,94 @@
+
+<h1>New company</h1>
+
+<form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input id="name" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="legalNumber">Legal Number</label>
+      <input id="legalNumber" type="text" class="form-control" placeholder="Ex: 00.000.000/0000" />
+    </div>
+
+    <div class="form-group">
+      <label for="state">State</label>
+      <select id="state" name="company[state]" class="state form-control">
+        <option></option>
+        <option>PE</option>
+        <option>SP</option>
+      </select>
+    </div>
+
+    <div class="form-group company_city_wrapper display-none">
+      <label for="city">Cidade</label>
+      <select id="city" name="company[city]" class="form-control">
+      </select>
+    </div>
+
+    <div class="form-group">
+        <label for="address">Address</label>
+        <input id="address" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="postalCode">Postal Code</label>
+        <input id="postalCode" type="text" class="form-control" placeholder="Ex: 00000-000"/>
+    </div>
+
+    <input type="submit" value="Salvar" class="btn btn-default" />
+</form>
+
+<script>
+
+    function error(element, message) {
+        console.log('error');
+        var errorLabel = $('<label class="error">' + message + '</label>');
+        $(element).parent().append(errorLabel);
+        $(element).focus(function() {
+            errorLabel.fadeOut(2000);
+        });
+    }
+
+    function onNameBlur() {
+        var inputName = $(this);
+        var name = inputName.val();
+        if (name == 'Teste') {
+            error(inputName, 'This company already exists');
+        }
+    }
+
+    function onLegalNumberBlur() {
+        var inputLegalNumber = $(this);
+        var legalNumber = inputLegalNumber.val();
+        if (!legalNumber.match(/\d{2}\.\d{3}\.\d{3}\/\d{4}/g)) {
+            error(inputLegalNumber, 'Legal number should be in this format: 00.000.000/0000');
+        } else if (legalNumber.endsWith('0')) {
+            error(inputLegalNumber, 'It is an invalid number. Legal number should not end with 0');
+        }
+    }
+
+    function onStateChange() {
+        var selectState = $(this);
+        var state = selectState.val();
+
+        $('#city').html('');
+        $.getJSON('cities.json', function (cities) {
+            cities = cities.filter(function (el) {
+                return el.state == state;
+            });
+
+            $('#city').append('<option></option>');
+            cities.forEach(function (el) {
+                $('#city').append('<option>' + el.name + '</option>');
+            });
+
+            $('.company_city_wrapper').show();
+        });
+    }
+
+   $('#name').blur(onNameBlur);
+   $('#legalNumber').blur(onLegalNumberBlur);
+   $('.state').change(onStateChange);
+</script>

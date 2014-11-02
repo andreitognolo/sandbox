@@ -1,0 +1,12 @@
+(function() {
+    var div = $('.company_city_wrapper');
+    div.html('<%= label_tag :city %>');
+    div.append('<%= select_tag :city, {}, {class: 'form-control'} %>');
+
+    var select = $('.company_city_wrapper select');
+
+    select.append('<option></option>');
+    <% @cities.each do |city| %>
+        select.append('<option value="<%= city.name %>"><%= city.name %></option>');
+    <% end %>
+})();
