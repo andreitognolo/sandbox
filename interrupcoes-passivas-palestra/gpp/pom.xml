@@ -1,0 +1,217 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>pdoc.plataform</groupId>
+	<artifactId>pdoc</artifactId>
+	<packaging>pom</packaging>
+	<name>pdoc</name>
+	<version>2.1.33-SNAPSHOT</version>
+	<inceptionYear>2008</inceptionYear>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<mycontainer.version>1.4.7</mycontainer.version>
+		<slf4j.version>1.6.1</slf4j.version>
+		<hsqldb.version>2.3.1</hsqldb.version>
+		<gae.version>1.8.2</gae.version>
+		<appengine.target.plugin.version>1.8.2</appengine.target.plugin.version>
+		<main.basedir>${project.basedir}</main.basedir>
+	</properties>
+
+	<prerequisites>
+		<maven>3</maven>
+	</prerequisites>
+
+	<modules>
+		<module>pdoc-parent</module>
+		<module>pdoc-impl</module>
+	</modules>
+
+	<scm>
+		<connection>scm:git:ssh://git@github.com/dextra/portal_documentos_plataforma.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/dextra/portal_documentos_plataforma.git</developerConnection>
+		<url>http://github.com/dextra/portal_documentos_plataforma</url>
+	</scm>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>http://repo.maven.apache.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>pdocs-repo-http-pub</id>
+			<url>http://storage.googleapis.com/dextra-pdoc-pub/repo/ext</url>
+		</repository>
+		<repository>
+			<id>raidenjpa</id>
+			<url>http://storage.googleapis.com/raiden-jpa</url>
+		</repository>
+		<repository>
+			<id>pdocs-repo-release</id>
+			<url>gs://dextra-pdoc-priv/maven/release</url>
+		</repository>
+		<repository>
+			<id>pdocs-repo-snapshot</id>
+			<url>gs://dextra-pdoc-priv/maven/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<url>http://repo.maven.apache.org/maven2/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>pdocs-repo-http-pub</id>
+			<url>http://storage.googleapis.com/dextra-pdoc-pub/repo/ext</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<distributionManagement>
+		<repository>
+			<id>pdocs-repo-release</id>
+			<name>pdocs repo release</name>
+			<!-- url>gs://gpp/maven/release</url -->
+			<url>gs://dextra-pdoc-priv/maven/release</url>
+			<!-- <url>file://${main.basedir}/target/repo/release</url> -->
+		</repository>
+		<snapshotRepository>
+			<id>pdocs-repo-snapshot</id>
+			<name>pdoc repo snapshot</name>
+			<url>gs://dextra-pdoc-priv/maven/snapshot</url>
+			<!-- <url>file://${main.basedir}/target/repo/snapshot</url> -->
+		</snapshotRepository>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<inherited>false</inherited>
+				<configuration>
+					<target>
+						<ant target="${ant.target}" />
+					</target>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>ant-contrib</groupId>
+						<artifactId>ant-contrib</artifactId>
+						<version>1.0b3</version>
+						<exclusions>
+							<exclusion>
+								<groupId>ant</groupId>
+								<artifactId>ant</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-nodeps</artifactId>
+						<version>1.7.0</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-javamail</artifactId>
+						<version>1.9.2</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.2.1</version>
+			</plugin>
+			<plugin>
+				<groupId>com.googlecode.mycontainer</groupId>
+				<artifactId>mycontainer-maven-plugin</artifactId>
+				<version>${mycontainer.version}</version>
+				<inherited>false</inherited>
+				<configuration>
+					<script>pdoc-impl/pdoc-mycontainer/src/main/resources/mycontainer-start.beanshell</script>
+					<includeTests>true</includeTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.4.3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.2.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.7</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<extensions>
+			<extension>
+				<groupId>pdoc.plataform.wagon</groupId>
+				<artifactId>pdoc-wagon-gs</artifactId>
+				<version>1.0.0</version>
+			</extension>
+		</extensions>
+
+	</build>
+
+</project>

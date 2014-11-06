@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>pdoc.plataform</groupId>
+	<artifactId>pdoc-mycontainer</artifactId>
+	<name>pdoc-mycontainer</name>
+
+	<parent>
+		<groupId>pdoc.plataform</groupId>
+		<artifactId>pdoc-impl</artifactId>
+		<version>2.1.33-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<main.basedir>${project.basedir}/../..</main.basedir>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.raidenjpa</groupId>
+			<artifactId>raidenjpa-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.mycontainer</groupId>
+			<artifactId>mycontainer-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.mycontainer</groupId>
+			<artifactId>mycontainer-datasource</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.mycontainer</groupId>
+			<artifactId>mycontainer-commons</artifactId>
+		</dependency>
+		<dependency>
+            <groupId>com.googlecode.mycontainer</groupId>
+            <artifactId>mycontainer-mail</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>com.googlecode.mycontainer</groupId> <artifactId>mycontainer-gae-web</artifactId> 
+			</dependency> <dependency> <groupId>com.google.appengine</groupId> <artifactId>appengine-api-1.0-sdk</artifactId> 
+			</dependency> <dependency> <groupId>com.google.appengine</groupId> <artifactId>appengine-api-labs</artifactId> 
+			<version>${gae.version}</version> </dependency> <dependency> <groupId>com.google.appengine</groupId> 
+			<artifactId>appengine-api-stubs</artifactId> <version>${gae.version}</version> 
+			</dependency> <dependency> <groupId>com.google.appengine</groupId> <artifactId>appengine-testing</artifactId> 
+			<version>${gae.version}</version> </dependency> -->
+	</dependencies>
+
+</project>

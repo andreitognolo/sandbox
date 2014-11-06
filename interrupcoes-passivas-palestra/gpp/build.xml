@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+
+<project name="mycontainer-download" default="all" basedir=".">
+	<property environment="env" />
+
+	<target name="all" depends="">
+		<echo>try: ant -p</echo>
+	</target>
+
+	<target name="prepare" depends="proxy" description="Install maven 3.x">
+		<delete dir="gen/app" />
+		<mkdir dir="gen/app" />
+		<parallel>
+			<sequential>
+				<get dest="gen/app/maven.zip" src="http://storage.googleapis.com/dextra-pdoc-pub/repo/ext/br/com/portaldedocumentos/ext/maven/3.0.5/maven-3.0.5.zip" />
+				<unzip dest="gen/app" src="gen/app/maven.zip" />
+				<move file="gen/app/apache-maven-3.0.5" tofile="gen/app/maven" />
+				<chmod perm="u+x" file="gen/app/maven/bin/mvn" />
+			</sequential>
+			<sequential>
+				<antcall target="phantomjs-install" />
+			</sequential>
+		</parallel>
+	</target>
+
+	<target name="phantomjs-install" description="Install PhantomJS once">
+		<delete dir="gen/app/phantomjs" />
+		<mkdir dir="gen/app" />
+		<get dest="gen/app/phantomjs.zip" src="http://storage.googleapis.com/dextra-pdoc-pub/repo/ext/br/com/portaldedocumentos/ext/phantomjs/1.9.2/phantomjs-1.9.2.zip" />
+		<unzip dest="gen/app" src="gen/app/phantomjs.zip" />
+		<chmod perm="u+x">
+			<fileset dir="gen/app/phantomjs">
+				<include name="phantomjs-linux*" />
+				<include name="phantomjs-macosx*" />
+			</fileset>
+		</chmod>
+		<exec executable="bash" osfamily="unix">
+			<arg value="-ec" />
+			<arg value="gen/app/phantomjs/phantomjs-linux-64 -v; cp -v gen/app/phantomjs/phantomjs-linux-64 gen/app/phantomjs/phantomjs; " />
+		</exec>
+		<exec executable="bash" osfamily="unix">
+			<arg value="-ec" />
+			<arg value="gen/app/phantomjs/phantomjs-linux-32 -v; cp -v gen/app/phantomjs/phantomjs-linux-32 gen/app/phantomjs/phantomjs; " />
+		</exec>
+		<exec executable="bash" osfamily="mac">
+			<arg value="-ec" />
+			<arg value="gen/app/phantomjs/phantomjs-macosx -v; cp -v gen/app/phantomjs/phantomjs-macosx gen/app/phantomjs/phantomjs; " />
+		</exec>
+	</target>
+</project>

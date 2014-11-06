@@ -1,0 +1,30 @@
+<section class="poly">
+	<section class="page">
+		<h1>Passo 3</h1>
+		
+		<span class="info-max-result">(tela com alguns campos para preencher)</span>
+		
+		<div class="btn-group">
+			<a class="relatorio btn btn-blue btn-link" href="exemploRelatorioWeb.html?exp=pdf" target="_blank">Gerar Relatorio</a>
+		</div>
+	</section>
+	
+	<script type="text/javascript">
+		execute(function($, template, def) {
+			require([ 'comp!pdoc/struct' ], function(struct) {
+				def({
+					open : function() {
+						var page = $(template(".page")());
+						
+						page.find('.relatorio').click(function() {
+							location = "#PaginaA";
+						});
+						
+						struct.open(page);
+					}
+				})
+			});
+		});
+	</script>
+</section>
+							

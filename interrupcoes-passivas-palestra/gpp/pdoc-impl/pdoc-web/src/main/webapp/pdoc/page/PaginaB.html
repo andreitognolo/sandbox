@@ -1,0 +1,30 @@
+<section class="poly">
+	<section class="page">
+		<h1>Passo 2</h1>
+		
+		<span class="info-max-result">(tela com alguns campos para preencher)</span>
+		
+		<div class="btn-group">
+			<button class="next btn btn-blue" type="button">Proximo</button>
+		</div>
+	</section>
+	
+	<script type="text/javascript">
+		execute(function($, template, def) {
+			require([ 'comp!pdoc/struct' ], function(struct) {
+				def({
+					open : function() {
+						var page = $(template(".page")());
+						
+						page.find('.next').click(function() {
+							location = "#PaginaC";
+						});
+						
+						struct.open(page);
+					}
+				})
+			});
+		});
+	</script>
+</section>
+							

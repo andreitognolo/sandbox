@@ -1,0 +1,40 @@
+<section class="poly">
+
+	<section class="struct">
+		<div class="message">
+			<ul class="dialog-group no-print"></ul>
+		</div>
+
+		<div class="wrapper clearfix struct">
+
+			<div class="sidebar-container pattern-light-noise">
+				<div class="sidebar-content clearfix"></div>
+			</div>
+
+			<div class="inner-content clearfix"></div>
+			<div style="position:absolute;width:0px;height:0px;left:-10000px;top:-10000px"><input type="button" value="hidden" /></div>
+		</div>
+	</section>
+
+	<script type="text/javascript">
+		execute(function($, template, def) {
+
+			def({
+				struct : function() {
+					if (!$('body .struct').length) {
+						$('body').html(template('.struct'));
+					}
+				},
+				open : function(face) {
+					this.struct();
+					$('.struct').html(face);
+					return $('body');
+				},
+				face : function() {
+					return $('body .inner-content');
+				}
+			});
+
+		});
+	</script>
+</section>

@@ -1,0 +1,990 @@
+/*----------  Escritorios ----------*/
+.map-frame {
+    height: 250px;
+    border: 1px solid #cdcdcd;
+    clear: both;
+    margin: 30px 0;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .65), 0 2px 2px #eee;
+    background-color: #fcfcfc;
+    border-radius: 2px;
+}
+
+.map-indicator {
+    background-color: #e3e3e3;
+    position: relative;
+    border: 1px solid #aeaeae;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .75), inset 0 2px 2px rgba(0, 0, 0, .1);
+    border-radius: 25px;
+    width: 26px;
+    padding-top: 3px;
+    height: 22px;
+    text-align: center;
+    color: #7e7e7e;
+    text-shadow: 0 1px 0 #f3f3f3;
+    vertical-align: middle;
+    font: bold 14px 'PT Sans', verdana, sans-serif;
+    display: inline-block;
+}
+
+.map-indicator:after {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 1px;
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    margin-left: -6px;
+    border-radius: 15px;
+    box-shadow: 0 5px 8px 2px #444;
+    z-index: -1;
+}
+
+.list-view-lote-escritorios {
+    padding: 0 2px;
+    clear: both;
+    margin-bottom: 35px;
+}
+
+.list-view-lote-escritorios>li {
+    border-left: dotted 1px #ccc;
+    border-bottom: dotted 1px #ccc;
+    padding: 20px 5px 20px 20px;
+    margin-bottom: 0;
+    cursor: pointer;
+    float: left;
+}
+
+.list-view-lote-escritorios>li:first-child {
+    border-left: 0;
+    padding-left: 0;
+}
+
+.list-view-lote-escritorios>li:hover {
+    background-color: rgba(255, 255, 255, .75);
+}
+
+.list-view-lote-escritorios .escritorio-info {
+    display: inline-block;
+    line-height: 16px;
+    border-bottom: 1px solid #DEEBF0;
+    font-size: +2;
+    padding-bottom: 10px;
+    width: 95%;
+}
+
+.list-view-lote-escritorios .escritorio-info>h3 {
+    font-weight: bold;
+    font: bold 14px 'PT Sans', verdana, sans-serif;
+    margin-bottom: 1px;
+    color: #222;
+}
+
+/*----------  Lotes  ----------*/
+.pistolada {
+    width: 450px;
+}
+
+.loteList {
+    list-style: none;
+}
+
+.headline-lote>h3:first-child {
+    font-size: 17px;
+}
+
+.headline-lote>h3:last-child {
+    color: #376287;
+}
+
+.form-busca-lote,.form-busca-lote input {
+    width: 430px;
+}
+
+.form-lote-recebimento {
+    width: 725px;
+}
+
+.form-lote-recebimento textarea {
+    height: 120px;
+    width: 515px !important;
+}
+
+.form-novo-lote-pistolada {
+    margin-bottom: 0;
+}
+
+.form-busca-documentos,.form-busca-documentos input {
+    width: 430px;
+}
+
+/*----------  Lista Tarefas  ----------*/
+.listaTarefas .tarefa {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0
+}
+
+.listaTarefas .tarefa:hover {
+    background-color: #DEEBF0
+}
+
+.listaTarefas li {
+    list-style-type: none;
+    margin: 10px;
+    border-bottom: 1px solid #DEEBF0;
+    font-size: +2
+}
+
+.listaTarefas li .tarefa .desc {
+    display: block;
+    font-weight: bold;
+}
+
+.listaTarefas li .tarefa .ident {
+    display: block;
+    color: #000
+}
+
+.listaTarefas li .tarefa .qtd {
+    margin: 0 10px
+}
+/*----------  Lista Parametros  ----------*/
+ol.listaDeParametros li {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #CCCCCC;
+    color: #27627E;
+    display: block;
+    margin: 5px;
+    padding: 5px;
+}
+
+body.dragging, body.dragging * {
+  cursor: move;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+/*----------  Lista Fallow Up  ----------*/
+.listaFollowUps .followUp {
+    display: block;
+    width: 90%;
+    height: 100%;
+    padding: 10px;
+}
+
+.listaFollowUps li.lightBlue,.listaFollowUps li:hover {
+    background-color: #DEEBF0;
+    cursor: pointer
+}
+
+.listaFollowUps li {
+    list-style-type: none;
+    margin: 10px;
+    font-size: +2;
+    border-bottom: 2px solid #DEEBF0;
+}
+
+.listaFollowUps li .followUp .desc {
+    color: #087EAE;
+    display: block;
+    font-weight: bold;
+}
+
+.listaFollowUps li .followUp .darkBlue {
+    color: #004979;
+}
+
+.listaFollowUps li .followUp .ident {
+    display: block;
+    color: #000;
+    padding: 5px;
+}
+
+.listaFollowUps li .followUp .ident .label {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.listaFollowUps li .followUp .ident .content {
+    display: inline-block;
+    max-width: 590px;
+    word-wrap: break-word;
+}
+
+/*----------  Lotes  ----------*/
+.novoLoteForm {
+    margin-bottom: 25px;
+}
+
+.novoLoteForm input,.novoLoteForm select {
+    width: 300px;
+}
+
+.novoLoteForm .form-item-option {
+    font-size: 13px;
+    float: left;
+    width: 290px;
+    position: relative;
+    padding: 0 20px;
+    line-height: 18px;
+    margin-bottom: 8px;
+}
+
+.novoLoteForm .form-item-option input {
+    margin-right: 5px;
+    position: absolute;
+    left: 1px;
+    top: 3px;
+}
+
+.form-field-cartorios {
+    position: relative;
+    width: 430px;
+    margin-bottom: 25px;
+}
+
+.form-field-cartorios input {
+    width: 600px;
+    padding-right: 35px;
+}
+
+.form-field-cartorios .submit {
+    position: absolute;
+    transition: none;
+    right: 6px;
+    top: 34px;
+    box-shadow: 0 0 transparent;
+    border: 0;
+    background: transparent url('../img/bundle.png') -2px -198px;
+    width: 22px;
+    height: 22px;
+    z-index: 3;
+    cursor: pointer;
+    padding-right: 0;
+}
+
+.form-field-cartorios input:focus+.submit {
+    background-position: -27px -198px;
+}
+
+.form-field-cartorios .submit-icon {
+    padding: 0 !important;
+    background: transparent url('../img/bundle.png') -2px -198px;
+    display: block;
+    position: absolute;
+    top: 7px;
+    right: -160px;
+    width: 22px !important;
+    height: 22px;
+    background-color: transparent;
+    border: 0;
+    box-shadow: 0 0 transparent !important;
+    text-indent: -9999px;
+    transition: none;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.form-field-cartorio {
+    margin-bottom: 15px;
+}
+
+/*----------  Escritorios  ----------*/
+.escritorio-consultar-cartorios {
+    width: 700px;
+}
+
+/*---- escritorio-verificar-integridade ----*/
+.escritorio-verificar-integridade .popupConfirmacao,.escritorio-verificar-integridade .popupComentario {
+    width: 600px;
+}
+
+.div-args {
+    margin: 30px 0px;
+}
+
+.textarea-args {
+    display: inline-block;
+    height: 200px;
+    width: 600px;
+}
+
+.textarea-result {
+    height: 600px;
+    width: 800px;
+    margin: 30px 0px;
+}
+
+ul.formulario li.field span.label {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+ul.file-list li span.invalido,ul.formulario li.field span.invalido {
+    color: red;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+ul.file-list li span.invalido {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+ul.formulario li.field span.valido {
+    color: green;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+div.escritorio-consultar-cartorios div.cartorios {
+    margin: 15px 0;
+    max-height: 300px;
+}
+
+.pop-main div.grid-cartorios {
+    max-height: 250px;
+    overflow: auto;
+}
+
+ul li.anexos {
+    height: 45px;
+}
+
+.formulario .anexos fieldset {
+    border: 1px solid #B2C7D0;
+    border-radius: 4px 4px 4px 4px;
+    background-color: #FCFCFC;
+    padding: 6px 12px;
+    transition: all 150ms ease-in-out 0s;
+}
+
+.formulario .anexos fieldset div {
+    color: #97A2A5;
+    font-family: 'PT Sans', verdana, sans-serif;
+}
+
+.formulario select.situacaoKit,.formulario select.filtro,.formulario select.step {
+    width: 320px;
+}
+
+.detalhesFollowUp .detalhes {
+    margin: 7px 0;
+    padding: 10px;
+    background-color: #F5F5F5;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: inset 0 -15px 20px rgba(200, 200, 200, .4), inset 0 0 0 1px rgba(200, 200, 200, .5), 0 0 0 4px rgba(222, 235, 240, .2);
+}
+
+.detalhesFollowUp {
+    width: 100%
+}
+
+.follow-up-buttons {
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.detalhes .campo-detalhe {
+    margin: 5px 0;
+    display: block
+}
+
+h2.followHeader {
+    margin-bottom: 3px;
+}
+
+.detalhesFollowUp .buttonAction {
+    float: right
+}
+
+.detalhesFollowUp .buttonAction button {
+    font-size: 11px;
+}
+
+li.field input.button-menos {
+    margin: 0 15px 0 0;
+    min-width: 0;
+}
+
+li.field input.button-mais {
+    margin: 0 0 0 15px;
+    min-width: 0;
+}
+
+li.field input.center-text {
+    text-align: center
+}
+
+.grid-kit-content {
+    margin-top: 30px
+}
+
+.box-historico {
+    display: block;
+    padding: 25px;
+}
+
+.box-historico.historico-kit {
+    background-color: #DEEBF0;
+    border: 1px solid #BCCBBC;;
+    box-shadow: 0 0 12px rgba(50, 50, 255, 0.14) inset;
+}
+
+.box-historico.follow-up {
+    background-color: #EDFCFF;
+    border: 1px solid #CFDEDE;
+}
+
+div.historico {
+    overflow: auto;
+    height: 300px;
+    padding: 5px;
+    border: 0.5px solid #C5D6F1;
+}
+
+hr.short-margin {
+    margin: 5px 0;
+}
+
+.li-header.header-green {
+    background-color: #E4FFFF;
+    border: 1px solid #7FD9AB;
+    box-shadow: -1px 0 17px rgba(32, 212, 52, 0.1) inset;
+}
+
+.li-header.header-orange {
+    background-color: #E0F8E6;
+    border: 1px solid #86B404;
+    box-shadow: -1px 0 17px rgba(32, 212, 52, 0.1) inset;
+}
+
+.li-header.header-yellow {
+    background-color: #FFFFE0;
+    border: 1px solid #BDB76B;
+    box-shadow: 0 0 17px rgba(240, 230, 140, 0.42) inset;
+}
+
+.li-header.header-red {
+    background-color: #FFD4AE;
+    border: 1px solid #FF6F71;
+    box-shadow: 0 0 17px rgba(128, 0, 0, 0.05) inset;
+}
+
+.li-header {
+    background-color: #F5FDFD;
+    border: 1px solid #B0C0DB;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 17px rgba(190, 180, 178, 0.18) inset;
+    margin: 4px 5px;
+    padding: 15px 5px;
+    cursor: pointer;
+}
+
+.header-parametros {
+    font-size: 13px;
+}
+
+.title-parametros {
+    display: inline-block;
+    margin: 10px 0px 3px 0px;
+}
+
+.body-parametros {
+    margin: 0 20px;
+    font-size: 12px;
+}
+
+.li-header.historico-irregular {
+    box-shadow: 0 0 57px rgba(199, 149, 139, 0.6) inset;
+    background-color: #FFFFA9;
+    border: 1px solid #C9C973;
+}
+
+.box-historico.historico-kit.historico-irregular {
+    background-color: #FEFEC9;
+    border: 1px solid #C9C973;
+}
+
+.li-box {
+    border-left: 1px solid #B8C0FF;
+    border-right: 1px solid #B8C0FF;
+    padding: 1px 4px;
+}
+
+.li-bottom {
+    border-bottom: 1px solid #B8C0FF;
+    border-left: 1px solid #B8C0FF;
+    border-right: 1px solid #B8C0FF;
+    margin-bottom: 8px;
+    padding: 1px 4px;
+}
+
+li .darkBlue {
+    color: #004979;
+}
+
+li .lightBlue {
+    color: #002F96;
+}
+
+li span.header-span {
+    display: block;
+    margin-bottom: 2px;
+}
+
+div.historico-total {
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+div.historico-kits-follow-up {
+    min-width: 680px;
+}
+
+div.header li,div.box-historico li {
+    padding-top: 5px
+}
+
+div.filtro-follow-up {
+    display: inline-block;
+    width: 520px;
+}
+
+div.filtro-botoes {
+    display: inline-block;
+}
+
+/*----------  DASHBOARD  ----------*/
+div.container {
+    background-color: rgba(61, 166, 236, 0.29);
+    border-width: medium;
+    border-style: solid;
+    display: inline-block;
+    height: 70px;
+    margin: 10px;
+    width: 150px;
+    cursor: pointer;
+}
+
+div.container div.description {
+    font-weight: bold;
+    height: 28px;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0px 3px 0px 3px;
+}
+
+div.container div.value {
+    font-size: 35px;
+    text-align: center;
+    color: #965959;
+}
+
+div.container div.value span[value="0"] {
+    color: #487291;
+}
+
+div.container div.value span[value="100"]:before {
+    content: "+ ";
+}
+
+div.containers.empty-container:before {
+    content: "Nenhum favorito encontrado";
+    margin-top: 20px;
+    display: inline-block;
+}
+
+/*----------  FILTRO  ----------*/
+div.toggle-img,div.remover-filtro {
+    background-color: rgba(61, 166, 236, 0.29);
+    display: inline;
+    margin: 5px;
+    cursor: pointer;
+}
+
+h3.toggle-label {
+    display: inline-block;
+}
+
+div.historico.center-text {
+    font-size: 14px;
+    padding: 25px;
+    text-align: center;
+}
+
+div.file-form-value {
+    padding: 6px;
+}
+
+/*----  Anexo popup  ----*/
+div.form-value .input-file-group {
+    width: 385px;
+    height: 28px;
+    margin: 0px;
+}
+
+div.input-file-group input.file-original {
+    cursor: pointer;
+    font-size: 10px;
+    height: 43px;
+    opacity: 0;
+    width: 95%;
+}
+
+div.div-input-falso {
+    margin-top: -34px;
+}
+
+div.div-input-falso input.file-falso {
+    box-shadow: 0 3px 3px rgba(150, 150, 150, 0.1) inset, 0 0 0 2px rgba(166, 191, 201, 0.25);
+    font-family: Verdana;
+    font-size: 15px;
+    height: 25px;
+    margin-left: 10px;
+    padding: 0 0 0 5px;
+    width: 78%;
+}
+
+.input-file-group button.fake-button {
+    clear: both;
+    cursor: pointer;
+    float: right;
+    font-size: 11px;
+    height: 20px;
+    margin-top: 2px;
+    padding: 1px;
+    width: 16%;
+}
+
+.div-upload-control {
+    vertical-align: top;
+    width: 100%;
+}
+
+ul.upload-control,ul.file-list {
+    vertical-align: top;
+}
+
+.upload-popup .upload-list {
+    width: 100%;
+}
+
+.uploaded-file-list {
+    overflow: auto;
+    height: 105px;
+    padding: 8px 8px 0 0;
+}
+
+.action-buttons-salvar {
+    padding-top: 25px;
+}
+
+.action-buttons-remover {
+    padding-top: 25px;
+}
+
+.to-upload-file {
+    height: 50px;
+}
+
+.config-upload-files {
+    margin: 10px 0 0 10px;
+}
+
+form.form-upload {
+    margin-bottom: 0;
+}
+
+.configuracoes-files .field input[type="checkbox"] {
+    margin-left: 10px;
+}
+
+.configuracoes-files {
+    margin: 10px;
+}
+
+.box-upload {
+    width: 670px;
+}
+
+h4.h4-upload {
+    border-bottom: 1px solid #C7CCD1;
+    margin: 0;
+    text-align: center;
+}
+
+.margin-files-permissions {
+    margin-left: 15px;
+}
+
+.upload-list.upload-list-bigger {
+    width: 100%;
+}
+
+.file-list a,.file-list span,.config-upload-files>label {
+    vertical-align: top;
+}
+
+.img-duvida {
+    background: url("../img/help.png") no-repeat scroll rgba(0, 0, 0, 0);
+    height: 17px;
+    width: 16px;
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.agrupador-formulario {
+    font-weight: bold;
+}
+
+.processo .desc {
+    display: block;
+}
+
+.processo .desc {
+    color: #000;
+    margin-bottom: 2px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.processo .detail {
+    display: block;
+    margin: 8px 0;
+    width: 50%;
+}
+
+.processo .desc .id,.processo .ident {
+    margin-right: 21px;
+}
+
+.processo .detail .ident .label {
+    color: #456063;
+    font-weight: bold;
+}
+
+.processo .group-button {
+    float: right;
+    padding: 5px 60px 0 0;
+}
+
+.processo .group-button a,.processo .group-button button {
+    font-size: 13px;
+}
+
+ul li.processo {
+    border-bottom: 1px solid #ABC6C9;
+    display: block;
+    margin-top: 13px;
+    padding: 15px 9px 3px;
+}
+
+ul li.processo:hover {
+    background-color: #DEEBF0;
+}
+
+/*-- Processo Editor   -- */
+.processoForm .newFields select {
+    width: 250px;
+    margin-right: 15px;
+    margin-left: 30px;
+}
+
+.processoForm .newFields .value {
+    width: 400px;
+}
+
+/* ---- IRREGULARIDADE ---- */
+.irregularidade-impressao label {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.irregularidade-impressao li {
+    margin: 7px 0px 3px 0px;
+}
+
+.irregularidade-impressao .protocolo {
+    margin: 0px 0px 7px 0px;
+}
+
+.irregularidade-impressao .data {
+    text-align: right;
+}
+
+.irregularidade-impressao .assinatura-data {
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    display: inline-flex;
+    width: 150px;
+}
+
+.irregularidade-impressao .assinatura-container {
+    margin-top: 45px;
+}
+
+.irregularidade-impressao .assinatura {
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    display: inline-flex;
+    width: 50%;
+    margin-right: 5px;
+}
+
+.irregularidade-impressao .irregularidade-field div {
+    display: block;
+    border: solid 1px;
+    margin: 10px 0px 20px 0px;
+    padding: 10px;
+}
+
+.irregularidade-impressao .rodape {
+    clear: both;
+    padding: 0;
+    text-align: center;
+    line-height: normal;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: none;
+}
+
+ul li.desc {
+    padding: 0 0 5px 25px;
+    border-bottom : 1px solid #DEEBF0;
+}
+
+ul.favoritos-ul {
+    border-bottom: 1px solid #DBE9EF;
+    padding: 20px;
+}
+
+li.favorito-li {
+	display:inline-block;
+	vertical-align: top;
+}
+
+div.favorito {
+    border-bottom: 1px solid #C3D0D6;
+    border-right: 1px solid #C3D0D6;
+    display: inline-block;
+    margin-right: 5px;
+    padding: 1px 18px;
+    width: 100px;
+    position: relative;
+}
+
+div.favoritar {
+    background-color: rgba(160, 208, 255, 0.16);
+    cursor: pointer;
+}
+
+div.favoritar:hover {
+    cursor: pointer;
+}
+
+div.favorito:hover {
+	background-color: rgba(160, 208, 255, 0.4);
+}
+
+div.favorito .favoritoHead {
+    height: 31px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+div.favorito .favoritoQuantidade {
+	height: 48px;
+}
+
+div.favorito .loading-favorito {
+	height: 100%;
+	background: transparent url('../img/loading-favorito.gif') center center no-repeat;
+}
+
+div.favorito .qtd {
+	color: #965959;
+    font-size: 35px;
+    text-align: center;
+    padding-top: 5px;
+}
+
+div.favoritar .qtd{
+	visibility: visible;
+}
+
+div.favorito .delete {
+	background-color: #C3D0D6;
+    color: #FFFFFF;
+    border-radius: 5px 5px 5px 5px;
+    padding: 0 3px;
+    cursor:pointer;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    font-size: 10px;
+}
+
+div.legado {
+    border-bottom: 1px solid #B0C0DB;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 4px 9px;
+}
+
+.lista-irregularidades li:hover {
+	background-color: #DEEBF0;
+}
+
+.lista-irregularidades .desc {
+	color: #087EAE;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 30px;
+    margin-top: 10px; 
+}
+
+.lista-irregularidades .detail {
+	display: block;
+	margin: 10px 0px 0px 0px;
+}
+.lista-irregularidades .rodape {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	min-height: 25px;
+}
+
+.lista-irregularidades .actions {
+	float: right;
+}
+
+.lista-irregularidades .protocolo {
+	float: left;
+}
+
+.irregularidades-imprimir {
+	text-align: right;
+}
+
+/*-- loading --*/
+.loading { display: block; cursor: wait; z-index: 1000; }
+.loading .overlay { position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; overflow: hidden; display: block; z-index: 999; background-color:#000; opacity: 0.2; filter: alpha(opacity = 10);}
+.loading .load { background: url("../img/load.gif") no-repeat scroll right top #fff; border-bottom: 1px solid #000000; border-top: 1px solid #000000; padding: 5px 20px; text-align: center; z-index: 1001; min-height: 20px; box-shadow: 0 0 10px 5px rgba(80, 80, 80, 0.4); width: 400px}
+.loading p { padding: 2px 0; margin-bottom: 0px; line-height: auto; }
+
+

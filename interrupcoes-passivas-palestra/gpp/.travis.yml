@@ -1,0 +1,20 @@
+language: java
+jdk:
+  - oraclejdk7
+install: ./cmds/ci-install.sh
+before_script:
+ - "echo $JAVA_OPTS"
+ - "export JAVA_OPTS=-Xmx512m"
+script: ./cmds/ci-test.sh
+after_failure: ./cmds/ci-android-notification.sh
+after_success: ./cmds/ci-success.sh
+notifications:
+  email:
+    recipients:
+      - portaldedocumentos@dextra-sw.com
+    on_success: change
+    on_failure: always
+cache:
+  directories:
+  - $HOME/.m2
+

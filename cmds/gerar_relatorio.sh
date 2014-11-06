@@ -1,1 +1,1 @@
-wget -O /tmp/relatorio.pdf "http://localhost:8080/w/ExemploRelatorio/teste?_fpass=admin&_fuser=admin&exp=pdf"
+curl "http://localhost:8080/exemploRelatorioWeb.html?exp=pdf" > /tmp/relatorio.pdf

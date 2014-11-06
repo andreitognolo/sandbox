@@ -1,0 +1,33 @@
+
+import br.com.portaldedocumentos.*;
+import br.com.portaldedocumentos.helper.*;
+import br.com.portaldedocumentos.service.impl.*;
+import br.com.portaldedocumentos.service.admin.*;
+import br.com.portaldedocumentos.plataform.mycontainer.*;
+import br.com.portaldedocumentos.entity.*;
+import br.com.portaldedocumentos.helper.*;
+import br.com.portaldedocumentos.entity.query.*;
+import br.com.portaldedocumentos.entity.manager.*;
+import br.com.portaldedocumentos.entity.manager.hibernate.*;
+import br.com.portaldedocumentos.mycontainer.*;
+import com.andreitognolo.passiveinterruption.*;
+
+try {
+	mycontainer = new MycontainerHelper();
+	
+	mycontainer.setLogging("logging.mycontainer.properties");
+	mycontainer.setWebPath("pdoc-impl/pdoc-web/src/main/webapp");
+	
+	mycontainer.bootMycontainer();
+	mycontainer.bootWeb();
+	
+	new com.andreitognolo.passiveinterruption.PhantomBoot().boot();
+	
+	mycontainer.bind(8080);
+
+	mycontainer.waitFor();
+	
+	mycontainer.shutdown();
+} catch (Exception e) {
+	e.printStackTrace();
+}

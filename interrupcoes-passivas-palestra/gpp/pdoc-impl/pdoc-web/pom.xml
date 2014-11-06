@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>pdoc.plataform</groupId>
+	<artifactId>pdoc-web</artifactId>
+	<packaging>war</packaging>
+	<name>pdoc-web</name>
+
+	<parent>
+		<groupId>pdoc.plataform</groupId>
+		<artifactId>pdoc-impl</artifactId>
+		<version>2.1.33-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<main.basedir>${project.basedir}/../..</main.basedir>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.beanshell</groupId>
+			<artifactId>bsh</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>pdoc.plataform</groupId>
+			<artifactId>pdoc-mycontainer</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>phantomjs4java</groupId>
+			<artifactId>phantomjs4java-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>pdoc-web</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.1.0.v20131115</version>
+				<configuration>
+					<jettyXml>src/test/resources/jetty-ds.xml</jettyXml>
+					<systemProperties>
+						<systemProperty>
+							<name>pdoc.test</name>
+							<value>true</value>
+						</systemProperty>
+					</systemProperties>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>commons-dbcp</groupId>
+						<artifactId>commons-dbcp</artifactId>
+						<version>1.2</version>
+					</dependency>
+					<dependency>
+						<groupId>org.hsqldb</groupId>
+						<artifactId>hsqldb</artifactId>
+						<version>${hsqldb.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<activation>
+				<file>
+					<!-- This employs that the basedir expression is only recognized by Maven 3.x (see MNG-2363) -->
+					<exists>${basedir}</exists>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.google.appengine</groupId>
+						<artifactId>appengine-maven-plugin</artifactId>
+						<version>${appengine.target.plugin.version}</version>
+						<configuration>
+							<disableUpdateCheck>true</disableUpdateCheck>
+							<oauth2>false</oauth2>
+							<address>0.0.0.0</address>
+							<fullScanSeconds>-1</fullScanSeconds>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>releaseMail</id>
+			<activation>
+				<property>
+					<name>releaseMail</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.7</version>
+						<executions>
+							<execution>
+								<phase>deploy</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<target>
+								<echo>Sending release mail</echo>
+								<echo>version: ${project.version}</echo>
+								<mail mailport="587" enableStartTLS="true" mailhost="smtp.gmail.com" user="build-continua@dextra-sw.com" password="2275N5" subject="[Portal] Portal Doc Release" messageFile="src/test/resources/releaseMail.html" messagemimetype="text/html">
+									<from address="build-continua@dextra-sw.com" />
+									<replyto address="portaldedocumentos@dextra-sw.com" />
+									<to address="portaldedocumentos@dextra-sw.com" />
+								</mail>
+							</target>
+						</configuration>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.ant</groupId>
+								<artifactId>ant-javamail</artifactId>
+								<version>1.8.2</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

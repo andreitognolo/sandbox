@@ -1,0 +1,14 @@
+.inner-content {
+	margin-left: 0px;
+	padding: 20px 40px 60px 0;
+	min-height: 100%;
+	position: relative;
+}
+
+.sidebar-container {
+	display: none;
+}
+
+@page {
+	size: landscape;
+}

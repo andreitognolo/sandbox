@@ -8,7 +8,7 @@ fi;
 
 while true
 do
-   ATIME=`stat -c %Z $1`
+   ATIME=`stat -t %T $1`
    if [[ "$ATIME" != "$LTIME" ]]
    then
 		echo "Change detected"
@@ -19,7 +19,7 @@ do
 		
 		source $2 || 
 		time=$(date +%T)
-    		notify-send "$time - Alteracao realizada"
+		terminal-notifier -message "Change detected"
        LTIME=$ATIME
    fi
    sleep 1

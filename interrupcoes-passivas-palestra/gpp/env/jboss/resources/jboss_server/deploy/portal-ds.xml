@@ -1,0 +1,18 @@
+<datasources>
+
+  <xa-datasource>
+      <jndi-name>FabsiaDS</jndi-name>
+
+      <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+      <xa-datasource-property name="ServerName">localhost</xa-datasource-property>
+      <xa-datasource-property name="PortNumber">5432</xa-datasource-property>
+
+      <xa-datasource-property name="DatabaseName">sia-Sep2012</xa-datasource-property>
+      <xa-datasource-property name="User">fab-user</xa-datasource-property>
+      <xa-datasource-property name="Password">fab</xa-datasource-property>
+
+      <track-connection-by-tx/>
+  </xa-datasource>
+
+</datasources>
+
