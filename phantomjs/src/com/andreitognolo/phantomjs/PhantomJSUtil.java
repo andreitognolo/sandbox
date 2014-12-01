@@ -1,4 +1,4 @@
-package br.com.brainweb.extranet.util.phantomjs;
+package com.andreitognolo.phantomjs;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
