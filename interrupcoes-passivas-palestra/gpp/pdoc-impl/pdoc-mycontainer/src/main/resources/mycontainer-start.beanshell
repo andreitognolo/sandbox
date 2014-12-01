@@ -16,12 +16,12 @@ try {
 	mycontainer = new MycontainerHelper();
 	
 	mycontainer.setLogging("logging.mycontainer.properties");
-	mycontainer.setWebPath("pdoc-impl/pdoc-web/src/main/webapp");
+	mycontainer.setWebPath("qunit-page");
 	
 	mycontainer.bootMycontainer();
 	mycontainer.bootWeb();
 	
-	new com.andreitognolo.passiveinterruption.PhantomBoot().boot();
+	//new com.andreitognolo.passiveinterruption.PhantomBoot().boot();
 	
 	mycontainer.bind(8080);
 
