@@ -27,35 +27,14 @@
 		<module>pdoc-impl</module>
 	</modules>
 
-	<scm>
-		<connection>scm:git:ssh://git@github.com/dextra/portal_documentos_plataforma.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/dextra/portal_documentos_plataforma.git</developerConnection>
-		<url>http://github.com/dextra/portal_documentos_plataforma</url>
-	</scm>
-
 	<repositories>
 		<repository>
 			<id>central</id>
 			<url>http://repo.maven.apache.org/maven2/</url>
 		</repository>
 		<repository>
-			<id>pdocs-repo-http-pub</id>
-			<url>http://storage.googleapis.com/dextra-pdoc-pub/repo/ext</url>
-		</repository>
-		<repository>
 			<id>raidenjpa</id>
 			<url>http://storage.googleapis.com/raiden-jpa</url>
-		</repository>
-		<repository>
-			<id>pdocs-repo-release</id>
-			<url>gs://dextra-pdoc-priv/maven/release</url>
-		</repository>
-		<repository>
-			<id>pdocs-repo-snapshot</id>
-			<url>gs://dextra-pdoc-priv/maven/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
 		</repository>
 	</repositories>
 
@@ -64,10 +43,6 @@
 			<id>central</id>
 			<url>http://repo.maven.apache.org/maven2/</url>
 		</pluginRepository>
-		<pluginRepository>
-			<id>pdocs-repo-http-pub</id>
-			<url>http://storage.googleapis.com/dextra-pdoc-pub/repo/ext</url>
-		</pluginRepository>
 	</pluginRepositories>
 
 	<distributionManagement>
@@ -75,15 +50,8 @@
 			<id>pdocs-repo-release</id>
 			<name>pdocs repo release</name>
 			<!-- url>gs://gpp/maven/release</url -->
-			<url>gs://dextra-pdoc-priv/maven/release</url>
 			<!-- <url>file://${main.basedir}/target/repo/release</url> -->
 		</repository>
-		<snapshotRepository>
-			<id>pdocs-repo-snapshot</id>
-			<name>pdoc repo snapshot</name>
-			<url>gs://dextra-pdoc-priv/maven/snapshot</url>
-			<!-- <url>file://${main.basedir}/target/repo/snapshot</url> -->
-		</snapshotRepository>
 	</distributionManagement>
 
 	<build>
