@@ -1,0 +1,12 @@
+package crud;
+
+import org.junit.Test;
+
+public class CompanyTest {
+
+	@Test
+	public void saveTest() {
+		
+	}
+	
+}

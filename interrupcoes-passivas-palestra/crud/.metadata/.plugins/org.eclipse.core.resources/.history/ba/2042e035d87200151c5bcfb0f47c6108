@@ -1,0 +1,8 @@
+package crud;
+
+public class CompanyTest {
+
+	public void saveTest() {
+		
+	}
+}
