@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+
+require 'crawler'
+
+raise '[ERROR] You should inform the domain' unless ARGV.first
+
+assets_map = Crawler.new.find_assets(ARGV.first)
+assets_map.each do |page, assets|
+  puts page
+
+  assets.each do |asset|
+    puts " - #{asset}"
+  end
+
+  puts "\n"
+end
